@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>From Awareness to Action — My RECI Zine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Spectral:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE6D4;
+    --paper-soft:#F8F4E9;
+    --ink:#211D16;
+    --ink-soft:#4A4536;
+    --blue:#1F4E8C;
+    --blue-tint:#D7E3F1;
+    --red:#C83F20;
+    --red-tint:#F4DCCF;
+    --line:#C9BEA0;
+    --tape: #E7D9A8;
+    --s1:#1F4E8C; --s1-tint:#D7E3F1;
+    --s2:#C83F20; --s2-tint:#F4DCCF;
+    --s3:#1F8A6B; --s3-tint:#D7EFE6;
+    --s4:#7A4FB5; --s4-tint:#E7DCF4;
+    --s5:#B8821E; --s5-tint:#F4E8C9;
+    --s6:#A23E7A; --s6-tint:#F0DCE8;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#211D16;
+      --paper-soft:#2B2619;
+      --ink:#EDE6D4;
+      --ink-soft:#C7BFA9;
+      --blue:#7FAEE0;
+      --blue-tint:#233349;
+      --red:#E78361;
+      --red-tint:#432B21;
+      --line:#4A4536;
+      --tape:#3A341F;
+      --s1:#7FAEE0; --s1-tint:#233349;
+      --s2:#E78361; --s2-tint:#432B21;
+      --s3:#5FC7A3; --s3-tint:#1C3A30;
+      --s4:#B394DE; --s4-tint:#352A42;
+      --s5:#E0B454; --s5-tint:#3D301A;
+      --s6:#D98FBC; --s6-tint:#3D2432;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink-soft);}
+  body{
+    font-family:'Spectral', Georgia, serif;
+    color:var(--ink);
+    background:var(--paper);
+  }
+  .toolbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    background:var(--ink); color:var(--paper);
+    padding:10px 16px; font-family:'Space Grotesk',sans-serif; font-size:13px;
+  }
+  .toolbar b{font-weight:700; letter-spacing:.02em;}
+  .toolbar button, .toolbar select{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:500;
+    background:var(--paper); color:var(--ink); border:none; border-radius:4px;
+    padding:6px 10px; cursor:pointer;
+  }
+  .toolbar button:hover{background:var(--blue-tint);}
+  #saveStatus{opacity:.75; font-style:italic; margin-left:auto;}
+  .wrap{max-width:760px; margin:0 auto;}
+  .page{
+    position:relative;
+    padding:48px 40px 56px;
+    border-bottom:3px dashed var(--line);
+    overflow:hidden;
+  }
+  .page:last-of-type{border-bottom:none;}
+  .tape{
+    position:absolute; width:120px; height:34px; background:var(--tape);
+    opacity:.75; box-shadow:0 2px 4px rgba(0,0,0,.15);
+  }
+  .stamp{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12px;
+    letter-spacing:.08em; color:var(--paper); background:var(--blue);
+    padding:5px 12px; border-radius:3px; transform:rotate(-2deg);
+  }
+  h1.title{
+    font-family:'Space Grotesk',sans-serif; font-weight:700;
+    font-size:clamp(34px,6vw,54px); line-height:1.02; letter-spacing:-0.01em;
+    margin:18px 0 4px; max-width:9ch;
+  }
+  h2.page-title{
+    font-family:'Space Grotesk',sans-serif; font-weight:700;
+    font-size:clamp(24px,4vw,32px); line-height:1.08; margin:14px 0 6px;
+  }
+  .subhead{font-family:'Caveat',cursive; font-size:22px; color:var(--red); margin:0 0 18px;}
+  p.lead{font-size:17px; line-height:1.55; color:var(--ink-soft); max-width:56ch;}
+  .divider{border:none; border-top:2px solid var(--ink); margin:22px 0; width:64px;}
+  .section-label{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px;
+    text-transform:uppercase; letter-spacing:.06em; color:var(--blue); margin:28px 0 8px;
+  }
+  .note{
+    background:var(--paper-soft); border:2px solid var(--line); border-radius:6px;
+    padding:16px 18px; margin:14px 0; position:relative;
+  }
+  .note.baseline::before{
+    content:"FROM YOUR BASELINE INVENTORY"; position:absolute; top:-11px; left:14px;
+    background:var(--red); color:var(--paper-soft); font-family:'Space Grotesk',sans-serif;
+    font-size:10px; font-weight:700; letter-spacing:.08em; padding:3px 8px; border-radius:3px;
+  }
+  .note p{margin:4px 0; font-size:15px; line-height:1.5;}
+  .note .q{font-weight:600; color:var(--ink-soft); font-size:13px; margin-top:10px;}
+  textarea, input[type=text]{
+    width:100%; font-family:'Caveat',cursive; font-size:19px; color:var(--ink);
+    background:
+      repeating-linear-gradient(var(--paper-soft) 0px, var(--paper-soft) 33px, var(--line) 34px);
+    border:1px solid var(--line); border-radius:4px; padding:10px 12px;
+    line-height:34px; resize:vertical;
+  }
+  textarea[data-key]{ overflow-y:hidden; resize:none; }
+  input[type=text]{line-height:normal; padding:10px 12px;}
+  textarea:focus, input[type=text]:focus{outline:2px solid var(--blue);}
+  .field{margin:10px 0 20px;}
+  .field label{display:block; font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600; margin-bottom:6px; color:var(--ink-soft);}
+  .checklist{list-style:none; padding:0; margin:10px 0;}
+  .checklist li{display:flex; align-items:flex-start; gap:10px; margin:9px 0; font-size:16px;}
+  .checklist input[type=checkbox]{width:20px; height:20px; accent-color:var(--blue); margin-top:2px; flex:none;}
+  .bullets{padding-left:20px; font-size:16px; line-height:1.6;}
+  .bullets li{margin:4px 0;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:600px){.grid2{grid-template-columns:1fr;}}
+  .identity-web{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0;}
+  .identity-chip{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600;
+    border:2px solid var(--blue); color:var(--blue); padding:6px 14px; border-radius:999px;
+    transform:rotate(-1.4deg);
+  }
+  .identity-chip:nth-child(even){transform:rotate(1.4deg); border-color:var(--red); color:var(--red);}
+  .progress-row{display:flex; align-items:center; gap:14px; padding:10px 0; border-bottom:1px solid var(--line);}
+  .progress-row:last-child{border-bottom:none;}
+  .dot{width:16px; height:16px; border-radius:50%; border:2px solid var(--blue); flex:none;}
+  .dot.done{background:var(--blue);}
+  .progress-row .label{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px;}
+  .progress-row .when{margin-left:auto; font-size:12px; color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;}
+  table.readings{width:100%; border-collapse:collapse; margin:14px 0;}
+  table.readings th, table.readings td{border:1px solid var(--line); padding:8px 10px; font-size:14px; vertical-align:top;}
+  table.readings th{background:var(--blue-tint); font-family:'Space Grotesk',sans-serif; text-align:left;}
+  .cover{
+    background:
+      radial-gradient(circle at 85% 10%, var(--red-tint) 0, transparent 40%),
+      radial-gradient(circle at 10% 85%, var(--blue-tint) 0, transparent 40%),
+      var(--paper);
+    padding-bottom:70px;
+  }
+  .cover .eyebrow{font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:.1em; font-size:13px; color:var(--red);}
+  .lantern-icon{ float:right; margin:4px 0 10px 16px; transform:rotate(4deg); }
+  .torn-divider{ width:140px; height:12px; display:block; margin:6px 0 18px; }
+  .doodle-star{ display:inline-block; font-size:20px; color:var(--red); transform:rotate(-8deg); margin:0 4px; }
+  .pull-quote-mark{ font-family:'Space Grotesk',sans-serif; font-size:64px; font-weight:700; color:var(--blue); line-height:0; position:relative; top:22px; margin-right:4px; opacity:.5; }
+  .cover .meta{margin-top:30px; font-size:15px; color:var(--ink-soft); line-height:1.8;}
+  .cover .meta input{border:none; border-bottom:2px solid var(--ink); background:transparent; font-family:'Caveat',cursive; font-size:20px; width:260px; padding:2px 4px;}
+  .quote-block{font-family:'Caveat',cursive; font-size:24px; line-height:1.4; color:var(--red); margin:22px 0; max-width:50ch;}
+  .sphere-icon{ float:right; margin:0 0 10px 16px; transform:rotate(-3deg); }
+  .wheel-wrap{ display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin:14px 0 20px; }
+  .wheel-legend{ list-style:none; padding:0; margin:0; font-size:14px; }
+  .wheel-legend li{ margin:4px 0; display:flex; align-items:center; gap:8px; }
+  .wheel-legend .n{ font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--paper); background:var(--blue); width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:11px; flex:none; }
+  .wheel-legend li.done .n{ background:var(--red); }
+  .final-quote{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(20px,3.4vw,28px);
+    line-height:1.3; max-width:22ch; margin:30px 0 8px;
+  }
+  .carry-list{display:flex; flex-direction:column; gap:12px; margin:14px 0;}
+  .carry-list .num{font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--paper); background:var(--blue); width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-right:10px;}
+  .print-text{ display:none; }
+  @media print{
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
+    .toolbar{display:none !important;}
+    #backupPanel{display:none !important;}
+    body{background:white;}
+    .page{border-bottom:none; page-break-after:always; padding:30px 10px;}
+    textarea[data-key], input[type=text][data-key]{display:none !important;}
+    .print-text{
+      display:block; font-family:'Caveat',cursive; font-size:17px; color:#000;
+      white-space:pre-wrap; border-bottom:1px solid #999; padding:6px 2px; min-height:22px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <b>📒 My RECI Zine</b>
+  <select onchange="if(this.value)document.getElementById(this.value).scrollIntoView({behavior:'smooth'});this.selectedIndex=0;">
+    <option value="">Jump to page…</option>
+    <option value="p-cover">Cover</option>
+    <option value="p-why">Why I Joined</option>
+    <option value="p-journey">My Journey</option>
+    <option value="p-anxiety">Navigating Racial Anxiety</option>
+    <option value="p-sphere1">Sphere 1 · Oppression &amp; Liberation</option>
+    <option value="p-sphere2">Sphere 2 · Identities &amp; Biases</option>
+    <option value="p-scripts">Scripts for Hard Conversations</option>
+    <option value="p-sphere3">Sphere 3 · Diversity &amp; Literacy</option>
+    <option value="p-diversity-audit">Session 7 Workbook · Diversity Audit</option>
+    <option value="p-sphere4">Sphere 4 · Empathy &amp; Stamina</option>
+    <option value="p-sphere5">Sphere 5 · Trauma &amp; Healing</option>
+    <option value="p-sphere6">Sphere 6 · Inequities &amp; Justice</option>
+    <option value="p-designer">Through an ID's Lens</option>
+    <option value="p-kids">Teaching the Next Generation</option>
+    <option value="p-readings">Readings That Stood Out</option>
+    <option value="p-commit">Commitments</option>
+    <option value="p-carry">What I'll Carry Forward</option>
+    <option value="p-list">My Reading List</option>
+  </select>
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button onclick="toggleBackupPanel()">💾 Backup / Restore</button>
+  <button onclick="resetAll()">↺ Clear my answers</button>
+  <span id="saveStatus">loading…</span>
+</div>
+
+<div id="backupPanel" style="display:none; background:var(--paper-soft); border-bottom:3px dashed var(--line); padding:18px 24px; font-family:'Space Grotesk',sans-serif;">
+  <div class="wrap">
+    <p style="font-size:13px; color:var(--ink-soft); margin:0 0 10px;">
+      <strong>To back up:</strong> click "Prepare backup text," then "Copy to clipboard," then paste it into a new text file on your device and save it as <code>reci-zine-backup.json</code>.<br>
+      <strong>To restore:</strong> paste that saved text into the box below and click "Restore from pasted text."
+    </p>
+    <button onclick="prepareBackupText()" style="font-family:inherit; font-size:13px; font-weight:600; background:var(--blue); color:var(--paper); border:none; border-radius:4px; padding:7px 12px; cursor:pointer; margin-right:8px;">Prepare backup text</button>
+    <button onclick="copyBackupText()" style="font-family:inherit; font-size:13px; font-weight:600; background:var(--red); color:var(--paper); border:none; border-radius:4px; padding:7px 12px; cursor:pointer;">Copy to clipboard</button>
+    <textarea id="backupTextArea" readonly rows="4" style="width:100%; margin-top:10px; font-family:monospace; font-size:12px; background:var(--paper); color:var(--ink); border:1px solid var(--line); border-radius:4px; padding:8px; line-height:1.4;" placeholder="Click 'Prepare backup text' above, then select all and copy."></textarea>
+    <div style="height:14px;"></div>
+    <button onclick="restoreFromPastedText()" style="font-family:inherit; font-size:13px; font-weight:600; background:var(--blue); color:var(--paper); border:none; border-radius:4px; padding:7px 12px; cursor:pointer;">Restore from pasted text</button>
+    <textarea id="restoreTextArea" rows="4" style="width:100%; margin-top:10px; font-family:monospace; font-size:12px; background:var(--paper); color:var(--ink); border:1px solid var(--line); border-radius:4px; padding:8px; line-height:1.4;" placeholder="Paste your previously saved backup text here, then click Restore."></textarea>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- COVER -->
+  <section class="page cover" id="p-cover">
+    <div class="tape" style="bottom:36px; left:30px; transform:rotate(-6deg);"></div>
+    <svg class="lantern-icon" viewBox="0 0 100 150" width="84" height="126" fill="none" stroke="var(--s1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M35 20 Q50 2 65 20"/>
+      <rect x="38" y="18" width="24" height="8" rx="2" fill="var(--s1)" stroke="none"/>
+      <path d="M30 26 L70 26 L64 110 L36 110 Z"/>
+      <line x1="38" y1="26" x2="34" y2="110"/>
+      <line x1="50" y1="26" x2="50" y2="110"/>
+      <line x1="62" y1="26" x2="66" y2="110"/>
+      <rect x="32" y="110" width="36" height="10" rx="2" fill="var(--s1)" stroke="none"/>
+      <rect x="40" y="120" width="20" height="6" rx="2" fill="var(--s1)" stroke="none"/>
+      <path d="M50 50 C44 60 42 68 50 78 C58 68 56 60 50 50 Z" fill="var(--s5)" stroke="none"/>
+    </svg>
+    <span class="eyebrow">RACIAL EQUITY CONSCIOUSNESS INSTITUTE · FALL 2026</span>
+    <h1 class="title">From Awareness<br>to Action</h1>
+    <p class="subhead">reflections from my RECI journey</p>
+    <svg class="torn-divider" viewBox="0 0 400 14" preserveAspectRatio="none"><polyline points="0,7 20,2 40,11 60,4 80,10 100,3 120,9 140,2 160,11 180,4 200,10 220,3 240,9 260,2 280,11 300,4 320,10 340,3 360,9 380,2 400,8" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <p class="lead">A personal exploration of identity, equity, belonging, and action — built across fifteen sessions and six bilateral spheres of the SCBT framework.</p>
+    <div class="meta">
+      Participant &nbsp;<input type="text" data-key="cover-name" placeholder="your name" value="Deanna Gilkey Schmuck, MS"><br>
+      Cohort &nbsp;<input type="text" data-key="cover-cohort" value="Fall 2026" placeholder="cohort">
+    </div>
+  </section>
+
+  <!-- WHY I JOINED -->
+  <section class="page" id="p-why">
+    <span class="stamp">01 · ORIENTATION</span>
+    <h2 class="page-title">Why I Joined RECI <span class="doodle-star">&#10022;</span></h2>
+
+    <div class="section-label">My starting point</div>
+    <p class="lead">Before participating in RECI, I wanted to better understand how race, identity, and systemic inequities shape experiences in higher education and the workplace.</p>
+
+    <div class="section-label">My goals</div>
+    <ul class="checklist">
+      <li><input type="checkbox" data-key="why-goal1"><label>Expand my understanding of racial equity</label></li>
+      <li><input type="checkbox" data-key="why-goal2"><label>Learn from the experiences of others</label></li>
+      <li><input type="checkbox" data-key="why-goal3"><label>Develop practical strategies for creating more equitable environments</label></li>
+      <li><input type="checkbox" data-key="why-goal4"><label>Grow as both a professional and a person</label></li>
+    </ul>
+
+    <div class="section-label">Reflection</div>
+    <div class="field">
+      <label>What motivated me to begin this journey?</label>
+      <textarea rows="4" data-key="why-reflection">I want to learn more about other perspectives and experiences and be able to engage in more meaningful conversations.</textarea>
+    </div>
+  </section>
+
+  <!-- MY RECI JOURNEY -->
+  <section class="page" id="p-journey">
+    <span class="stamp">02 · PROGRESS</span>
+    <h2 class="page-title">My RECI Journey</h2>
+
+    <div class="note baseline">
+      <p><strong>Strongest dimension:</strong> Dispositions</p>
+      <p><strong>Growing edge:</strong> Knowledge and Awareness</p>
+      <p><strong>What surprised me:</strong> my dispositions are stronger than my knowledge — a real, honest gap to acknowledge rather than paper over.</p>
+      <p><strong>How I'll stay accountable:</strong> stay accountable to myself — to keep learning, stay open to feedback, and be honest about my growth.</p>
+    </div>
+
+    <div class="section-label">The six bilateral spheres</div>
+    <div class="wheel-wrap">
+      <svg viewBox="0 0 300 300" width="200" height="200">
+        <circle cx="150" cy="150" r="105" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="3 5"/>
+        <text x="150" y="146" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="15" fill="var(--ink)">SIX</text>
+        <text x="150" y="164" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="15" fill="var(--ink)">SPHERES</text>
+        <g font-family="Space Grotesk, sans-serif" font-weight="700" font-size="15">
+          <circle cx="150" cy="45" r="23" fill="var(--s1-tint)" stroke="var(--s1)" stroke-width="2"/><text x="150" y="51" text-anchor="middle" fill="var(--s1)">1</text>
+          <circle cx="241" cy="98" r="23" fill="var(--s2-tint)" stroke="var(--s2)" stroke-width="2"/><text x="241" y="104" text-anchor="middle" fill="var(--s2)">2</text>
+          <circle cx="241" cy="203" r="23" fill="var(--s3-tint)" stroke="var(--s3)" stroke-width="2"/><text x="241" y="209" text-anchor="middle" fill="var(--s3)">3</text>
+          <circle cx="150" cy="255" r="23" fill="var(--s4-tint)" stroke="var(--s4)" stroke-width="2"/><text x="150" y="261" text-anchor="middle" fill="var(--s4)">4</text>
+          <circle cx="59" cy="203" r="23" fill="var(--s5-tint)" stroke="var(--s5)" stroke-width="2"/><text x="59" y="209" text-anchor="middle" fill="var(--s5)">5</text>
+          <circle cx="59" cy="98" r="23" fill="var(--s6-tint)" stroke="var(--s6)" stroke-width="2"/><text x="59" y="104" text-anchor="middle" fill="var(--s6)">6</text>
+        </g>
+      </svg>
+      <ul class="wheel-legend">
+        <li><span class="n" style="background:var(--s1);">1</span> Recognizing Oppression &amp; Advancing Liberation</li>
+        <li><span class="n" style="background:var(--s2);">2</span> Examining Identities &amp; Addressing Biases</li>
+        <li><span class="n" style="background:var(--s3);">3</span> Embracing Diversity &amp; Growing Literacy</li>
+        <li><span class="n" style="background:var(--s4);">4</span> Building Empathy &amp; Enhancing Stamina</li>
+        <li><span class="n" style="background:var(--s5);">5</span> Acknowledging Trauma &amp; Fostering Healing</li>
+        <li><span class="n" style="background:var(--s6);">6</span> Gauging Inequities &amp; Championing Justice</li>
+      </ul>
+    </div>
+
+    <div class="section-label">Learning progression</div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Recognizing Racial Oppression</div><div class="when">Sept 22</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Advancing Racial Liberation</div><div class="when">Sept 29</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Examining Racial Identities</div><div class="when">Oct 6</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Addressing Racial Biases</div><div class="when">Oct 13</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Embracing Racial Diversity</div><div class="when">Oct 20</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Growing Racial Literacy</div><div class="when">Oct 27</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Building Racial Empathy</div><div class="when">Nov 3</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Enhancing Racial Stamina</div><div class="when">Nov 10</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Acknowledging Racial Trauma</div><div class="when">Nov 17</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Fostering Racial Healing</div><div class="when">Nov 24</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Gauging Racial Inequities</div><div class="when">Dec 1</div></div>
+    <div class="progress-row"><div class="dot done"></div><div class="label">Championing Racial Justice</div><div class="when">Dec 8</div></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field">
+      <label>How has my thinking changed since the beginning of the cohort?</label>
+      <textarea rows="6" data-key="journey-reflection" placeholder="Write here…">At the start, I thought of this mostly as something to learn — concepts, history, vocabulary. I'm realizing now it's just as much about catching myself in real time: noticing where I default to silence instead of speaking, where I've mistaken a diverse-looking room for an inclusive one, where a past workplace's lack of policy let everyone, including me, off the hook from really examining it. The biggest shift is probably this: I used to treat not knowing enough as a reason to wait before engaging. I'm starting to think the waiting is its own cost.</textarea>
+    </div>
+  </section>
+
+  <!-- NAVIGATING RACIAL ANXIETY -->
+  <section class="page" id="p-anxiety">
+    <div class="tape" style="top:18px; left:-10px; transform:rotate(-6deg);"></div>
+    <span class="stamp" style="background:var(--red);">COMPANION CHAPTER</span>
+    <h2 class="page-title">Navigating Racial Anxiety</h2>
+    <p class="subhead">the chapter that tells the truth about what makes this work hard</p>
+    <p class="lead">This isn't one of the six spheres — it's the honest companion to all of them. Racial anxiety is near-universal, and naming it clearly is what makes the rest of this zine more authentic, not less capable.</p>
+
+    <div class="note baseline">
+      <p><strong>Domain with the highest frequency:</strong> Knowledge &amp; Preparedness Concerns — worry about not knowing enough, using the wrong words, or being exposed as unprepared, rated higher than any other domain.</p>
+      <p><strong>My default 4F response:</strong> Freeze / Fawn</p>
+      <p><strong>Where I feel it in my body:</strong> chest, throat</p>
+      <p><strong>Emotional pattern I noticed:</strong> unsure and inadequate</p>
+      <p><strong>Setting where it's most intense:</strong> teaching</p>
+    </div>
+
+    <div class="section-label">Layer 1 · My anxiety map</div>
+    <div class="field">
+      <label>What specific triggers reliably bring this anxiety on?</label>
+      <textarea rows="4" data-key="anx-triggers" placeholder="Topics, settings, interactions…">Being asked a question about race or equity in class that I don't have a confident, well-informed answer for. Moments where I sense a student or colleague expects me to respond to something race-related and I freeze instead — especially when I'm worried that whatever I say will sound uninformed or come across as performative rather than genuine. Also: silence itself, when I know something should be said and I let the moment pass because I'm unsure of the "right" words.</textarea>
+    </div>
+
+    <div class="section-label">Layer 2 · Where it comes from</div>
+    <div class="field">
+      <label>What experiences, messages, or patterns shaped this anxiety?</label>
+      <textarea rows="4" data-key="anx-origin">Teaching puts me in a position where I'm expected to have answers, and on this topic specifically I don't feel like I have the depth of formal study that I'd want before speaking with authority. That gap between the standard I hold myself to as an educator and how much I've actually studied race and equity is probably the root of it — not a single bad experience, but an ongoing sense of being a student myself in a role where I'm supposed to look like I'm not.</textarea>
+    </div>
+    <div class="field">
+      <label>Is this mostly fear of not knowing, or fear of being seen as someone who doesn't know?</label>
+      <textarea rows="3" data-key="anx-origin2">Mostly the first. When I look at my own answers, the worry is less "what will people think of me" and more a genuine sense that my knowledge has gaps — terminology I'm not sure of, history I haven't studied closely enough. The "being seen" part is real too, but it rides on top of the knowledge gap rather than being separate from it: in teaching specifically, not knowing and being seen not knowing happen in the same moment.</textarea>
+    </div>
+
+    <div class="section-label">Layer 3 · What I'm committing to</div>
+    <div class="field">
+      <label>One grounding practice I'll use when this anxiety shows up</label>
+      <textarea rows="3" data-key="anx-grounding" placeholder="e.g. naming it out loud, a breath before responding…">When I notice tightness in my chest or throat, I'll pause and literally name it to myself — "this is the anxiety, not a signal to stay silent" — then take one slow breath before responding. That's enough to interrupt the freeze without needing a perfect answer ready.</textarea>
+    </div>
+    <div class="field">
+      <label>A conversation or setting I'll use to practice staying present instead of freezing or fawning</label>
+      <textarea rows="3" data-key="anx-practice">Before trying this live in the classroom, I'll practice somewhere lower-stakes first — a RECI small-group breakout, or a conversation with a colleague who also teaches — where I can try staying in an exchange about race a beat longer than feels comfortable, without the pressure of being "the one who's supposed to know" in the room.</textarea>
+    </div>
+    <div class="field">
+      <label>Who can I be honest with about this?</label>
+      <textarea rows="2" data-key="anx-support" placeholder="Name someone specific — a vague answer is easy to never act on.">[name a person] — someone in the cohort or at work who's shown they can hold this kind of conversation without judgment, where I don't have to perform having it figured out.</textarea>
+    </div>
+
+    <div class="section-label">Layer 4 · What I'm still working through</div>
+    <div class="field">
+      <label>What still has the power to shut me down?</label>
+      <textarea rows="4" data-key="anx-edges">Being challenged directly, in the moment, in front of a group — especially a question where I sense there's no "safe" answer, or where pushing back might come across as defensive no matter how I respond. Even with a grounding practice, there will be moments where I still go quiet first and only find the better response later, after the moment has passed. I'm trying to treat that as something to keep working on, not a failure each time it happens.</textarea>
+    </div>
+
+    <div class="note">
+      <p>Beverly Daniel Tatum's point is worth keeping close: staying silent about race doesn't protect anyone — it just leaves the status quo undisturbed. The discomfort of an imperfect conversation is smaller than the cost of the silence it would replace.</p>
+    </div>
+  </section>
+
+  <!-- SPHERE 1 -->
+  <section class="page" id="p-sphere1">
+    <span class="stamp" style="background:var(--s1);">SPHERE 1</span>
+    <h2 class="page-title">Recognizing Racial Oppression &amp; Advancing Racial Liberation</h2>
+
+    <div class="section-label">Key learning</div>
+    <p class="lead">Racial liberation requires more than awareness. It requires understanding the systems, structures, and practices that create inequitable outcomes — and the honest recognition that systemic racism can operate at the institutional, societal, individual, and interactional level all at once, with or without anyone intending it.</p>
+
+    <div class="note">
+      <p>One idea from <em>Systemic Racism: Individuals and Interactions, Institutions and Society</em> (Banaji, Fiske &amp; Massey) that's worth sitting with: segregation and disadvantage aren't only something that happened in the past. Decades after housing discrimination was outlawed, racial gaps in lending, policing, and school funding have barely moved — because the systems built to sustain segregation outlasted the explicit intent behind them.</p>
+    </div>
+
+    <div class="section-label">The Four "I"s of Oppression</div>
+    <p class="lead" style="font-size:15px;">A framework for seeing how oppression perpetuates at every scale at once — each one has its own antidote.</p>
+    <ul class="checklist">
+      <li><input type="checkbox" data-key="s1-four-ideological"><label><strong>Ideological</strong> — value systems that present harm as "common sense." Antidote: long-term education, healing justice, decolonizing work.</label></li>
+      <li><input type="checkbox" data-key="s1-four-internalized"><label><strong>Internalized</strong> — absorbing false supremacy or false deficiency about oneself. Antidote: liberatory learning, accountable self-reflection.</label></li>
+      <li><input type="checkbox" data-key="s1-four-interpersonal" checked><label><strong>Interpersonal</strong> — expressed between people, intentionally or not, from offhand comments to violence. Antidote: naming it honestly, de-escalation, accountability.</label></li>
+      <li><input type="checkbox" data-key="s1-four-institutional" checked><label><strong>Institutional</strong> — built into policies and practices, like entrance-exam cutoffs that track with class more than ability. Antidote: policy audits, resourced DEI work, whistleblower protection.</label></li>
+    </ul>
+    <div class="field"><label>Which "I" is operating in a challenge I've experienced collaborating across difference?</label><textarea rows="4" data-key="s1-four-reflection">In my work designing courses, I've noticed how standards for what counts as "rigorous" or "professional" content tend to reflect one dominant cultural style — that's Institutional oppression, baked into norms rather than any one person's intent. When I've caught it and hesitated to name it out loud, that hesitation felt more like Interpersonal — not wanting to seem like I was overstepping by raising it.</textarea></div>
+
+    <div class="section-label">What stood out to me</div>
+    <div class="field"><textarea rows="2" data-key="s1-stood1" placeholder="•">That institutional oppression doesn't announce itself — a policy like a minimum test score doesn't look discriminatory, it just quietly tracks with class and race.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s1-stood2" placeholder="•">That oppression operates at four levels at once (ideological, internalized, interpersonal, institutional), and fixing one without the others doesn't fix the system.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s1-stood3" placeholder="•">That "good people" with no explicit racist intent are still the ones carrying out decisions that produce racially disparate outcomes — harder to sit with than imagining racism as only something bad actors do.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field">
+      <label>What does liberation look like in practice?</label>
+      <textarea rows="5" data-key="s1-reflection" placeholder="Write here…">Not a feeling of being more aware, but an actual change to something structural — a policy, a default, a norm that quietly favored one group getting named and rebuilt. In my own work, that might look like auditing a course or program for whose "rigor" it was designed around, and actually changing it rather than just noticing it. Liberation that stays in my head isn't liberation yet; it has to move into a decision I make differently.</textarea>
+    </div>
+  </section>
+
+  <!-- SPHERE 2 -->
+  <section class="page" id="p-sphere2">
+    <span class="stamp" style="background:var(--s2);">SPHERE 2</span>
+    <h2 class="page-title">Examining Racial Identities &amp; Addressing Racial Biases</h2>
+
+    <div class="section-label">Identity shapes experience</div>
+    <p class="lead">Each person's experiences are influenced by multiple identities and lived experiences.</p>
+    <div class="identity-web">
+      <span class="identity-chip">Family</span><span class="identity-chip">Community</span>
+      <span class="identity-chip">Education</span><span class="identity-chip">Work</span>
+      <span class="identity-chip">Culture</span><span class="identity-chip">Language</span>
+      <span class="identity-chip">Values</span><span class="identity-chip">Experiences</span>
+    </div>
+
+    <div class="note">
+      <p>A distinction worth keeping from <em>Racial Anxiety</em> (Godsil &amp; Richardson): bias isn't the only thing shaping cross-racial interactions. People of color can feel anxious about being on the receiving end of discrimination; white people can feel anxious about being perceived as racist — and that anxiety alone, independent of anyone's actual bias, can make interactions tense, shorten them, and lead each side to misread the other's discomfort as dislike.</p>
+    </div>
+
+    <div class="section-label">Things I notice more now</div>
+    <ul class="checklist">
+      <li><input type="checkbox" data-key="s2-notice1" checked><label>Missing voices</label></li>
+      <li><input type="checkbox" data-key="s2-notice2" checked><label>Unequal opportunities</label></li>
+      <li><input type="checkbox" data-key="s2-notice3" checked><label>Deficit-based language</label></li>
+      <li><input type="checkbox" data-key="s2-notice4" checked><label>Representation gaps</label></li>
+      <li><input type="checkbox" data-key="s2-notice5" checked><label>Other: <input type="text" style="width:60%;display:inline-block;margin-left:6px;" data-key="s2-notice-other" value="Who gets interrupted, and who gets the benefit of the doubt"></label></li>
+    </ul>
+
+    <div class="note">
+      <p>From <em>Implicit Bias and Structural Inequity</em> (Osta &amp; Vasquez, National Equity Project): implicit bias isn't something we're born with — it's "primed" by what we see every day, in segregated neighborhoods, in which track a new student gets placed in, in who we see in which jobs. The bias and the structure build each other. And the goal of this work isn't just individual awareness — it's <strong>belonging</strong>: making sure everyone's well-being is actually considered, not just that they're present in the room.</p>
+    </div>
+    <div class="field"><label>Where have I noticed my own associations being "primed" by segregated or unequal conditions, rather than anything I chose to believe?</label><textarea rows="4" data-key="s2-priming">Most of what shaped my early associations wasn't something I consciously decided — it was the ordinary texture of where I grew up and who I saw doing which jobs. If my neighborhood or school was more segregated than I noticed at the time, that absence itself did some of the priming: fewer counter-examples meant fewer chances to update the pictures I'd already absorbed from TV and news coverage. I don't have one dramatic moment to point to — it's more that I can't always tell which of my instinctive reactions are actually mine and which ones are just what I was surrounded by.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field">
+      <label>How do my identities influence the way I move through the world?</label>
+      <textarea rows="4" data-key="s2-reflection1" placeholder="Write here…">I've had certain privileges simply because of who I am — privileges other people haven't had, through no effort of my own and no fault of theirs. That's something I've become more aware of the older I get, and it's something I've made a decision to confront honestly rather than look past. I'm committing to keep learning, and to use whatever I have to help others rather than just feel okay about it myself.</textarea>
+    </div>
+    <div class="field">
+      <label>What biases have I become more aware of during this experience?</label>
+      <textarea rows="3" data-key="s2-reflection2" placeholder="Write here…">I've become more aware of a bias toward silence when I don't feel expert enough to speak — treating "I'm not sure I know enough" as a reason to hold back, when staying quiet can do its own kind of harm. I'm also noticing how much I've defaulted to thinking about race in the abstract rather than asking who, specifically, is affected by a given policy or decision in front of me.</textarea>
+    </div>
+  </section>
+
+  <!-- SCRIPTS FOR HARD CONVERSATIONS -->
+  <section class="page" id="p-scripts">
+    <div class="tape" style="top:20px; left:40%; transform:rotate(-3deg);"></div>
+    <span class="stamp">SKILLS</span>
+    <h2 class="page-title">Scripts for Hard Conversations</h2>
+    <p class="subhead">practice lines for addressing racial biases out loud</p>
+    <p class="lead">From <em>The Anti-Racist Resource Guide</em> (Victoria Lynn Alexander) — tactics for responding in the moment, with room to make each one mine.</p>
+
+    <div class="grid2">
+      <div class="note"><p><strong>Share your journey</strong> — "I used to say stuff like that too, but I've learned it can be hurtful. Instead, I now say ___."</p></div>
+      <div class="note"><p><strong>Ask for clarification</strong> — "What do you mean by that? How did you come to that conclusion?"</p></div>
+      <div class="note"><p><strong>Separate intent from impact</strong> — "I know you didn't mean it that way, but it made me feel ___. Next time maybe use ___ instead?"</p></div>
+      <div class="note"><p><strong>Repeat the statement</strong> — "So what I'm hearing is ___. Is that correct?"</p></div>
+      <div class="note"><p><strong>Appeal to their values</strong> — "I know you really care about ___. Acting this way undermines that."</p></div>
+      <div class="note"><p><strong>"You're better than that"</strong> — hold them accountable to the person they already believe themselves to be.</p></div>
+      <div class="note"><p><strong>Challenge the stereotype</strong> — "Actually, in my experience ___" or offer a specific counter-example.</p></div>
+    </div>
+
+    <div class="field"><label>The tactic that feels most natural to me to practice first</label><input type="text" data-key="scripts-pick" value="Ask for clarification"></div>
+    <div class="field"><label>One line, in my own words, I could actually use this week</label><textarea rows="2" data-key="scripts-mine">"Can you say more about what you mean by that?" — it buys me a moment to think without needing to already have the right answer, and it usually gets the other person to do some of the work of explaining their own thinking.</textarea></div>
+
+    <div class="note">
+      <p>The same guide also collects scripted responses to common pushback lines people raise in conversations about racial justice — things like "isn't racism over?" or "all lives matter." I'm not treating any single script as the final word on a contested debate, but it's useful to have a starting point rather than freezing. Worth revisiting the full guide directly for those.</p>
+    </div>
+  </section>
+
+  <!-- SPHERE 3 -->
+  <section class="page" id="p-sphere3">
+    <span class="stamp" style="background:var(--s3);">SPHERE 3</span>
+    <h2 class="page-title">Embracing Racial Diversity &amp; Growing Racial Literacy</h2>
+
+    <div class="section-label">Beyond representation</div>
+    <p class="lead">Representation matters. Inclusion matters. Belonging matters.</p>
+
+    <div class="note">
+      <p>Growing racial literacy also means resisting the flattened, single-story version of any group. The systemic racism tutorial I read made this point well: Black Americans today are more diverse than most people assume — by immigrant background, by mixed-race identity, by class, by region — and treating any one group as a monolith is itself a failure of literacy, not just a failure of kindness.</p>
+    </div>
+
+    <div class="section-label">Reflection questions</div>
+    <div class="grid2">
+      <div class="field"><label>Who is present?</label><textarea rows="3" data-key="s3-present">At my previous employer, the staff was overwhelmingly homogeneous — there was very little racial diversity at any level, and no diversity or inclusion policies even existed to try to change that. Whatever diversity was there seemed to happen by accident, not by any intentional effort.</textarea></div>
+      <div class="field"><label>Who participates?</label><textarea rows="3" data-key="s3-participates">With so little diversity in the room to begin with, this question almost didn't apply — there wasn't a range of racial perspectives to notice who got heard and who didn't. Looking back, that absence itself is the finding: the lack of policy meant no one was even tracking whether the few people of color there felt able to speak up.</textarea></div>
+      <div class="field"><label>Who feels valued?</label><textarea rows="3" data-key="s3-valued">Honestly, I can't say with confidence — no one was asking that question. Without any diversity or inclusion policy, there was no mechanism (a survey, an affinity group, even an informal check-in) for finding out who felt valued versus who was just quietly getting by. I suspect the people who fit the existing mold without friction felt fine, and I have no real way of knowing how it felt for anyone who didn't.</textarea></div>
+      <div class="field"><label>Who may be missing?</label><textarea rows="3" data-key="s3-missing">Almost certainly people who looked at that workplace from the outside and correctly guessed they wouldn't be well-supported there — candidates of color who never applied, or who applied and didn't stay. Without any diversity or inclusion policy, there was nothing actively inviting them in, and homogeneous places tend to stay homogeneous for exactly that reason: the absence is self-reinforcing, not neutral.</textarea></div>
+    </div>
+
+    <div class="section-label">New ideas and vocabulary</div>
+    <div class="field"><textarea rows="4" data-key="s3-vocab" placeholder="Terms or concepts I want to remember…">A concrete story I want to remember: someone once suggested to that employer that they add a diversity statement to their job postings, and the idea was met with confusion — not hostility, just confusion, like it hadn't occurred to anyone that this was something a job posting could or should say. Nothing was ever added, as far as I saw. That's a telling example of what sits below even "tolerance" on the diversity spectrum — tolerance at least implies the idea has been considered and allowed. This was the idea not registering as a live option at all.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field">
+      <label>What concepts challenged my thinking the most?</label>
+      <textarea rows="5" data-key="s3-reflection">The idea that challenged me most is that confusion, not hostility, might be the more common response when someone first raises diversity at an unprepared organization. I think I'd pictured resistance as something more active — pushback, defensiveness. But the diversity-statement story showed me that the absence can be quieter and more passive than that: the idea simply doesn't register as something worth doing, and without anyone institutionally responsible for noticing that, nothing has to change. That's harder to confront than open opposition, because there's no specific moment to point to — just a gap that keeps re-closing on its own.</textarea>
+    </div>
+  </section>
+
+  <!-- SESSION 7 DIVERSITY AUDIT -->
+  <section class="page" id="p-diversity-audit">
+    <div class="tape" style="top:16px; right:-12px; transform:rotate(8deg);"></div>
+    <span class="stamp">SESSION 7 WORKBOOK</span>
+    <h2 class="page-title">The Diversity Spectrum &amp; Audit</h2>
+    <p class="subhead">embracing racial diversity, in practice</p>
+    <p class="lead">Diversity isn't something we tolerate — it's something we need, because no single perspective, however thoughtful, can see the whole picture. Where an environment falls on the spectrum matters more than whether it technically "has" diversity.</p>
+
+    <div class="section-label">The diversity spectrum — where does an environment I spend time in fall?</div>
+    <div class="field"><label>Environment I'm thinking about (workplace, neighborhood, social circle, faith community, school…)</label><input type="text" data-key="div-environment" value="A previous employer"></div>
+    <ul class="checklist">
+      <li><input type="radio" name="div-spectrum" data-key="div-spectrum" value="exclusion"><label><strong>Exclusion</strong> — actively or passively keeping people out; homogeneous by gatekeeping, hostility, or indifference</label></li>
+      <li><input type="radio" name="div-spectrum" data-key="div-spectrum" value="tolerance" checked><label><strong>Tolerance</strong> — presence is permitted without genuine welcome; no active effort to learn, include, or adapt</label></li>
+      <li><input type="radio" name="div-spectrum" data-key="div-spectrum" value="appreciation"><label><strong>Appreciation</strong> — actively valuing different perspectives; seeking out diverse viewpoints and what they add</label></li>
+      <li><input type="radio" name="div-spectrum" data-key="div-spectrum" value="integration"><label><strong>Integration</strong> — diversity shapes decisions, structures, and culture; full belonging</label></li>
+    </ul>
+    <div class="field"><label>Where would I like it to be, and what's one thing that would move it there?</label><textarea rows="3" data-key="div-spectrum-move">I'd want it at Appreciation at least — actually seeking out diverse candidates and perspectives, not just failing to exclude them. The one thing that would have moved it there was sitting right in front of them: actually adopting the diversity statement someone already suggested, instead of letting the idea quietly disappear.</textarea></div>
+
+    <div class="section-label">Monocultural norms I notice operating</div>
+    <ul class="checklist">
+      <li><input type="checkbox" data-key="div-norm-comm" checked><label><strong>Communication</strong> — only certain styles (directness, emotional restraint, linear argument) are treated as "professional"</label></li>
+      <li><input type="checkbox" data-key="div-norm-lead"><label><strong>Leadership</strong> — a narrow model, often individualistic, crowds out communal or relational leadership styles</label></li>
+      <li><input type="checkbox" data-key="div-norm-knowledge"><label><strong>Knowledge</strong> — credentials and Western frameworks are privileged over lived experience and other traditions</label></li>
+      <li><input type="checkbox" data-key="div-norm-belonging" checked><label><strong>Belonging</strong> — people who don't fit the dominant mold have to code-switch to be accepted</label></li>
+    </ul>
+
+    <div class="note">
+      <p><strong>Surface diversity</strong> counts heads — representation without power, voice, or belonging. <strong>Genuine diversity</strong> is representation <em>and</em> influence — diverse people actually shaping decisions, priorities, and culture, not just appearing in it.</p>
+    </div>
+    <div class="field"><label>Where have I mistaken surface diversity for the real thing?</label><textarea rows="3" data-key="div-surface">I think I've sometimes looked at a room with some visible diversity in it and assumed that meant inclusion was actually happening — without checking who was actually being listened to, or whose ideas were shaping what happened next. Representation is easy to see from across the room; influence isn't.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field"><label>What strengths did I notice — where do I already show genuine capacity for embracing racial diversity?</label><textarea rows="3" data-key="div-strengths">My own baseline Inventory already told me this: Dispositions is my strongest dimension. I don't need convincing that diversity matters — I already believe it and want it. That's a real strength to build from, even though believing it isn't the same as knowing how to notice or build it.</textarea></div>
+    <div class="field"><label>Is there a gap between my dispositions (how I value diversity) and my skills (what I actually do to pursue it)?</label><textarea rows="3" data-key="div-gap">Yes — my baseline Inventory flagged exactly this gap: my dispositions are ahead of my knowledge and skills. I value diversity, but I haven't built much actual practice in auditing an environment for it, naming a monocultural norm out loud when I see one, or doing anything concrete to change it rather than just noticing it.</textarea></div>
+
+
+    <div class="note">
+      <p>Audre Lorde's warning is worth keeping close: we often pour the energy it would take to explore difference into pretending it doesn't exist, or that it's an insurmountable wall — and either way, we lose the tool that real difference offers for creative change. Maya Angelou put the alternative simply: every thread in the tapestry is equal in value, whatever its color or texture.</p>
+    </div>
+
+    <div class="note">
+      <p>A finding worth remembering: researchers Krishna Savani and Jared Nai found that people living in more racially diverse neighborhoods were more likely to identify with "all of humanity" rather than just their own group — and that this, in turn, predicted them actually being more likely to help a stranger. In one striking study, they traced 4,500 offers of help posted after the 2013 Boston Marathon bombing and found more offers came from more diverse zip codes, even after controlling for distance from the bombing site.</p>
+    </div>
+  </section>
+
+  <!-- SPHERE 4 -->
+  <section class="page" id="p-sphere4">
+    <svg class="sphere-icon" viewBox="0 0 100 100" width="64" height="64" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50 82 C22 63 8 45 8 29 C8 14 20 5 33 5 C43 5 48 11 50 17 C52 11 57 5 67 5 C80 5 92 14 92 29 C92 45 78 63 50 82 Z" stroke="var(--s4)" stroke-width="5"/>
+      <path d="M78 18 A40 40 0 1 1 68 7" stroke="var(--s2)" stroke-width="4" stroke-dasharray="4 5"/>
+      <path d="M68 7 L77 4 L80 13 Z" fill="var(--s2)" stroke="none"/>
+    </svg>
+    <span class="stamp" style="background:var(--s4);">SPHERE 4</span>
+    <h2 class="page-title">Building Racial Empathy &amp; Enhancing Racial Stamina</h2>
+
+    <div class="section-label">Key learning</div>
+    <p class="lead">Awareness here means understanding and sharing in the racial experiences of others without collapsing them into my own — empathy isn't replacing someone else's story with my closest personal analogy. Action means building the endurance to stay engaged over years, not weeks; this is the sphere the course guide names as where most equity work actually fails.</p>
+
+    <div class="section-label">What stood out to me</div>
+    <div class="field"><textarea rows="2" data-key="s4-stood1" placeholder="•">Empathy done wrong replaces someone else's story with my closest personal comparison — that's substitution, not empathy.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s4-stood2" placeholder="•">Stamina, not any single hard conversation, is the actual bottleneck — most equity work fails from attrition, not from one bad moment.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s4-stood3" placeholder="•">There's a real difference between discomfort worth staying in and danger worth leaving, and I don't always pause to tell which one I'm actually in.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field"><label>What helps me stay engaged rather than withdraw when this work gets uncomfortable?</label><textarea rows="3" data-key="s4-reflection1">Naming the discomfort out loud to myself, the same practice from my anxiety chapter, and remembering that freezing in one moment doesn't mean I have to stay frozen for the rest of the conversation. Having one script ready — asking for clarification — gives me something to do besides go quiet.</textarea></div>
+    <div class="field"><label>Where have I mistaken my own experience for someone else's, instead of actually listening?</label><textarea rows="3" data-key="s4-reflection2">Probably most often in teaching: assuming that because I've felt unprepared or anxious in a conversation about race, a student or colleague of color must feel something similar — when their actual experience of that same moment likely isn't comparable to mine at all.</textarea></div>
+  </section>
+
+  <!-- SPHERE 5 -->
+  <section class="page" id="p-sphere5">
+    <svg class="sphere-icon" viewBox="0 0 100 100" width="64" height="64" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50 82 C22 63 8 45 8 29 C8 14 20 5 33 5 C43 5 48 11 50 17 C52 11 57 5 67 5 C80 5 92 14 92 29 C92 45 78 63 50 82 Z" stroke="var(--s5)" stroke-width="5"/>
+      <path d="M50 15 L42 32 L56 40 L44 58 L54 78" stroke="var(--s1)" stroke-width="3.5" fill="none"/>
+    </svg>
+    <span class="stamp" style="background:var(--s5);">SPHERE 5</span>
+    <h2 class="page-title">Acknowledging Racial Trauma &amp; Fostering Racial Healing</h2>
+
+    <div class="section-label">Key learning</div>
+    <p class="lead">Awareness means naming and validating the trauma racism produces, including its physiological dimensions — this isn't metaphorical; racism has measurable effects on stress and health. Action means practicing pathways toward healing that are actually evidence-based and culturally grounded, not generic wellness language applied on top of a specific harm.</p>
+
+    <div class="section-label">What stood out to me</div>
+    <div class="field"><textarea rows="2" data-key="s5-stood1" placeholder="•">Racism's effects on the body are measurable, not just emotional — that's not a metaphor, which changes how seriously I take "just let it go" advice.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s5-stood2" placeholder="•">Healing has to be culturally grounded, not generic — a wellness technique that ignores the specific harm isn't actually addressing it.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s5-stood3" placeholder="•">Acknowledging trauma is a separate step from fixing anything — rushing to solutions before naming the harm can itself be a kind of dismissal.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field"><label>What would culturally grounded healing actually look like in a space I'm part of?</label><textarea rows="3" data-key="s5-reflection1">Probably starting with asking the people actually affected what repair would look like to them, rather than importing a generic format and assuming it transfers. In a classroom, that might mean making space for the conversation rather than moving straight to the next unit once something difficult comes up.</textarea></div>
+    <div class="field"><label>Where have I treated racial harm as something to just get over, rather than something to name and repair?</label><textarea rows="3" data-key="s5-reflection2">The diversity-statement story from my previous employer is the clearest example — the suggestion got raised, met with confusion, and then quietly closed, with no one circling back to repair the gap it revealed. I didn't push it further either, which was its own version of treating it as something to just move past.</textarea></div>
+  </section>
+
+  <!-- SPHERE 6 -->
+  <section class="page" id="p-sphere6">
+    <svg class="sphere-icon" viewBox="0 0 100 100" width="64" height="64" fill="none" stroke="var(--s6)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="50" y1="10" x2="50" y2="85"/>
+      <line x1="18" y1="24" x2="82" y2="24"/>
+      <line x1="18" y1="24" x2="8" y2="46"/>
+      <line x1="18" y1="24" x2="28" y2="46"/>
+      <path d="M8 46 A10 10 0 0 0 28 46"/>
+      <line x1="82" y1="24" x2="72" y2="46"/>
+      <line x1="82" y1="24" x2="92" y2="46"/>
+      <path d="M72 46 A10 10 0 0 0 92 46"/>
+      <line x1="32" y1="85" x2="68" y2="85"/>
+      <polygon points="50,10 44,22 56,22" fill="var(--s6)" stroke="none"/>
+    </svg>
+    <span class="stamp" style="background:var(--s6);">SPHERE 6</span>
+    <h2 class="page-title">Gauging Racial Inequities &amp; Championing Racial Justice</h2>
+
+    <div class="section-label">Key learning</div>
+    <p class="lead">Awareness means measuring and documenting racial inequities with enough rigor that a claim can actually be defended with evidence, not just a feeling that something's unequal. Action means championing the specific policy or practice that would move the number I measured — not stopping at just raising awareness of the number itself.</p>
+
+    <div class="section-label">What stood out to me</div>
+    <div class="field"><textarea rows="2" data-key="s6-stood1" placeholder="•">Measuring something is itself a form of accountability — an inequity that's never measured is very easy to deny exists.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s6-stood2" placeholder="•">Championing justice means pushing for the specific policy that moves the number, not stopping at raising awareness of the number itself.</textarea></div>
+    <div class="field"><textarea rows="2" data-key="s6-stood3" placeholder="•">Evidence and emotion aren't opposites here — rigor makes the claim defensible, it doesn't replace the reason I cared about it in the first place.</textarea></div>
+
+    <div class="section-label">Reflection</div>
+    <div class="field"><label>What's one inequity in a space I'm part of that I could actually measure?</label><textarea rows="3" data-key="s6-reflection1">In course design, I could actually track whether outcomes or engagement differ depending on whose examples and case studies show up versus whose don't — instead of assuming equal materials automatically produce equal outcomes.</textarea></div>
+    <div class="field"><label>What's the specific policy or practice that would move that number?</label><textarea rows="3" data-key="s6-reflection2">Something as simple as a standing review step before any course ships — checking who's represented in the examples and assessments before calling the material finished, instead of relying on someone noticing after the fact.</textarea></div>
+  </section>
+
+  <!-- INSTRUCTIONAL DESIGNER LENS -->
+  <section class="page" id="p-designer">
+    <span class="stamp">PERSPECTIVE</span>
+    <h2 class="page-title">Through an Instructional Designer's Lens</h2>
+    <div class="section-label">Equity and learning design</div>
+    <p class="lead">The ideas explored through RECI influence:</p>
+    <ul class="bullets">
+      <li>Accessibility</li>
+      <li>Inclusive course design</li>
+      <li>Learner engagement</li>
+      <li>Representation in course materials</li>
+      <li>Assessment practices</li>
+      <li>Communication and belonging</li>
+    </ul>
+    <div class="section-label">Reflection</div>
+    <div class="field">
+      <label>How can I make my learning experiences more inclusive?</label>
+      <textarea rows="6" data-key="designer-reflection">A few concrete starting points rather than vague intentions: audit the examples and case studies in my course materials for whose names, contexts, and experiences show up by default, and diversify them deliberately rather than as a one-time fix. Examine my assessment methods for whether they quietly privilege one communication style or cultural default as the "right" way to demonstrate mastery — the same monocultural-norms question I was asking about workplaces applies just as much to a rubric. And stop treating accessibility and equity as two separate checklists, since they're really the same question asked twice: who was this designed for, and who wasn't.</textarea>
+    </div>
+  </section>
+
+  <!-- TEACHING THE NEXT GENERATION -->
+  <section class="page" id="p-kids">
+    <span class="stamp">PERSPECTIVE</span>
+    <h2 class="page-title">Teaching the Next Generation</h2>
+    <p class="subhead">talking to my own kids about race, even when I'm not sure how</p>
+    <p class="lead">From MomsRising &amp; EmbraceRace's <em>10 Tips for Teaching and Talking to Kids about Race</em> — this one isn't hypothetical for me. As a parent, this is a guide I want to actually keep returning to, not just a thought experiment about someone else's kids.</p>
+
+    <ul class="checklist">
+      <li><input type="checkbox" data-key="kids-1"><label><strong>Start early</strong> — babies notice racial difference by 6 months; by age 4, kids show signs of racial bias. It's okay to name it rather than wait.</label></li>
+      <li><input type="checkbox" data-key="kids-2"><label><strong>Encourage questions</strong> — curiosity about race doesn't need to be shut down to be handled well.</label></li>
+      <li><input type="checkbox" data-key="kids-3"><label><strong>Be mindful</strong> — what kids see us do matters more than what they hear us say.</label></li>
+      <li><input type="checkbox" data-key="kids-4"><label><strong>Face your own bias out loud</strong> — naming a bias you hold or have held makes it less likely to be passed on silently.</label></li>
+      <li><input type="checkbox" data-key="kids-5"><label><strong>Know and love who you are</strong> — including the less flattering parts of your own group's history, not just the proud parts.</label></li>
+    </ul>
+
+    <div class="section-label">Reflection</div>
+    <div class="field"><label>Who taught me what I first believed about race — and what did they do, more than what they said?</label><textarea rows="4" data-key="kids-reflection1">My parents, first — they tried to do better than the generation before them, even if what they modeled was still shaped by the limits of their own upbringing. But most of what I actually learned came later, once I got to college, where I had access to people, ideas, and experiences my parents' generation didn't. The gap between the two says something real: good intentions at home got me started, but it took leaving that environment to actually build understanding.</textarea></div>
+    <div class="field"><label>As a parent, what I want to keep learning</label><textarea rows="3" data-key="kids-commitment">I want to keep learning how to actually help the next generation — not just avoid saying the wrong thing, but build real skill at this, the same way I'm trying to build skill everywhere else in this zine. My kids are going to learn about race from watching me whether or not I feel ready, so I'd rather be actively working on it than waiting until I feel qualified.</textarea></div>
+  </section>
+
+  <!-- READINGS THAT STOOD OUT -->
+  <section class="page" id="p-readings">
+    <span class="stamp">RESOURCES</span>
+    <h2 class="page-title">Readings That Stood Out</h2>
+    <p class="lead">A few pieces from the cohort's resources that I want to carry with me — and what they mean to me, in my own words.</p>
+
+    <div class="note">
+      <p><strong>Racial Anxiety</strong> — Rachel D. Godsil &amp; L. Song Richardson</p>
+      <p style="font-size:13px; color:var(--ink-soft);">Argues that unwarranted racial disparities can arise from the anxiety both sides bring into a cross-racial interaction — not just from bias.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read1-takeaway">What stuck with me is that racial anxiety is its own mechanism, separate from bias. That reframes my own anxiety chapter: when I freeze in a conversation about race, it isn't automatic proof that I'm hiding some prejudice — it's a distinct, learnable pattern I can work on directly, the same way the article's ideas about scripts and the malleability of prejudice suggest.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>Systemic Racism: Individuals and Interactions, Institutions and Society</strong> — Mahzarin R. Banaji, Susan T. Fiske &amp; Douglas S. Massey</p>
+      <p style="font-size:13px; color:var(--ink-soft);">Traces how racism is "inbuilt" across four levels at once — institutional, societal, individual, and interactional — and why that makes it so hard to see from inside.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read2-takeaway">This is the piece that gave me language for what I noticed at my previous employer: the lack of a diversity policy wasn't any one person's personal failing, it was an institutional gap that let ordinary indifference go unchecked. "Good people" with no explicit racist intent were still the ones who let the diversity-statement suggestion quietly disappear — that's the article's whole argument, and it's an uncomfortable one to actually sit with rather than just agree with in theory.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>The Loud Silence of Racism: It is Killing Us All</strong> — Bridgette L. Jones</p>
+      <p style="font-size:13px; color:var(--ink-soft);">A physician's personal account of the cost of staying silent about racism in professional spaces, and why remaining silent is itself a choice with consequences.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read3-takeaway">This one hit closest to home of anything I read. Jones writes about the real cost of staying silent in professional spaces, and that's exactly the pattern my own anxiety worksheet surfaced — I default to freezing rather than speaking, especially in teaching. Her point that silence isn't neutral, that it's a choice with its own consequences, is the line I keep coming back to.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>Implicit Bias and Structural Inequity</strong> — Kathleen Osta &amp; Hugh Vasquez, National Equity Project</p>
+      <p style="font-size:13px; color:var(--ink-soft);">Insists that implicit bias work only matters if it's tied to the structures that primed the bias in the first place — otherwise awareness becomes its own dead end.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read5-takeaway">This reframed implicit bias for me — it's not a personal flaw to confess and move past, it's downstream of real conditions (segregation, school tracking, media) that primed it in the first place. That means the fix isn't just "be more aware," it's actually changing the structures that keep priming people the same way. Individual awareness without structural change is, as the authors put it, its own dead end.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>The Four "I"s of Oppression</strong> — TREC Diversity, Equity, and Inclusion Resource</p>
+      <p style="font-size:13px; color:var(--ink-soft);">A compact framework for how oppression operates at the ideological, internalized, interpersonal, and institutional level simultaneously, each with its own antidote.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read6-takeaway">This gave me a vocabulary for something I'd only felt vaguely before: that oppression isn't one thing, it's four mechanisms reinforcing each other. At my previous employer, the Institutional gap (no policy) and the Interpersonal hesitation (a suggestion met with confusion, and no one pushing further) were both operating at once. Naming which "I" I'm actually looking at makes it easier to know what kind of fix is actually needed, instead of treating every problem the same way.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>The Anti-Racist Resource Guide</strong> — Victoria Lynn Alexander</p>
+      <p style="font-size:13px; color:var(--ink-soft);">Practical scripts for interrupting bias in real conversations; also includes responses to common pushback lines, which I'm treating as a starting point rather than the final word.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read7-takeaway">The value of this guide for me wasn't any single script — it was realizing I don't need a perfect, original response ready before I'm allowed to speak. "Ask for clarification" especially gave me permission to respond with a question instead of freezing while I wait to have the fully-formed, correct thing to say. That's a small shift, but it directly targets my own default pattern.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>Are People Kinder in Racially Diverse Neighborhoods?</strong> — Tom Jacobs, Pacific Standard</p>
+      <p style="font-size:13px; color:var(--ink-soft);">Covers Savani &amp; Nai's research linking racially diverse neighborhoods to a stronger sense of identifying with "all of humanity" — and more actual helping behavior.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read8-takeaway">This gave me a concrete, research-backed reason to want diversity beyond fairness alone: homogeneous environments don't just lack representation, they measurably produce less helping behavior. That reframes my previous employer's lack of diversity as a practical loss, not only an ethical one — it was probably also a less generous place, in a way no one there ever had reason to notice or measure.</textarea></div>
+    </div>
+
+    <div class="note">
+      <p><strong>10 Tips for Teaching and Talking to Kids about Race</strong> — MomsRising &amp; EmbraceRace</p>
+      <p style="font-size:13px; color:var(--ink-soft);">Practical guidance for raising racially literate kids — and a mirror for how I was (or wasn't) taught myself.</p>
+      <div class="field"><label>My takeaway</label><textarea rows="3" data-key="read9-takeaway">This made me think about the gap between my parents' effort and what actually got through to me. They tried to do better than their own upbringing, but these tips point at something specific I don't think happened much at home: questions being genuinely explored rather than gently redirected. If I'm ever in a position to do this for a kid, starting earlier and treating curiosity as welcome rather than awkward is the concrete change I'd want to make.</textarea></div>
+    </div>
+
+    <div class="field">
+      <label>Another resource I want to add</label>
+      <input type="text" data-key="read4-title" placeholder="Title / author" value="The Master's Tools Will Never Dismantle the Master's House — Audre Lorde">
+      <div style="height:8px;"></div>
+      <textarea rows="3" data-key="read4-takeaway" placeholder="My takeaway…">Lorde's argument is that reforming a system using the same tools and categories that built it will only ever produce limited change — real transformation needs different tools, not just a more inclusive use of the old ones. That reframes a lot of what's in this zine: a diversity statement is one of the master's tools. It's a start. It isn't the house.</textarea>
+    </div>
+  </section>
+
+  <!-- LOOKING AHEAD -->
+  <!-- COMMITMENTS -->
+  <section class="page" id="p-commit">
+    <span class="stamp">PRAXIS</span>
+    <h2 class="page-title">Commitments Moving Forward</h2>
+    <div class="grid2">
+      <div class="field"><label>In the next 30 days</label><textarea rows="4" data-key="commit-30">Practice the "ask for clarification" script in at least one real conversation, even a small one. And pick one concrete action — a specific book, person, or event, not just "be more open" — and actually follow through on it, so a good intention of mine doesn't join the diversity statement that never got added.</textarea></div>
+      <div class="field"><label>In the next 6 months</label><textarea rows="4" data-key="commit-6mo">Audit one course or program I actually design — whose names, examples, and assessment norms are centered by default — and make at least one concrete change based on what I find, not just a note to revisit "later."</textarea></div>
+    </div>
+    <div class="field"><label>In the next year</label><textarea rows="3" data-key="commit-year">Be able to point to at least one real moment where I stayed present through discomfort instead of defaulting to Freeze or Fawn — actual evidence the pattern is shifting, not just something I've gotten better at describing in a worksheet.</textarea></div>
+
+  </section>
+
+  <!-- WHAT I'LL CARRY FORWARD -->
+  <section class="page" id="p-carry">
+    <span class="stamp">CLOSING</span>
+    <h2 class="page-title">What I'll Carry Forward <span class="doodle-star">&#10022;</span></h2>
+
+    <div class="section-label">Three ideas I want to remember</div>
+    <div class="carry-list">
+      <div><span class="num">1</span><input type="text" style="width:80%;" data-key="carry-1" value="Confusion, not hostility, is often the real obstacle — good people letting a good idea quietly disappear."></div>
+      <div><span class="num">2</span><input type="text" style="width:80%;" data-key="carry-2" value="Freezing isn't proof I'm hiding bias — it's a separate, learnable pattern I can work on directly."></div>
+      <div><span class="num">3</span><input type="text" style="width:80%;" data-key="carry-3" value="Representation isn't the same as influence — diversity has to actually shape decisions, not just be present in the room."></div>
+    </div>
+
+    <div class="section-label">One commitment</div>
+    <div class="field"><textarea rows="3" data-key="carry-commitment">Turn what I already believe into actual practiced skill. My Dispositions were my strongest area on day one — the harder, more honest work is making sure a good intention of mine doesn't join the diversity statement that never got added.</textarea></div>
+
+    <div class="section-label">Final reflection</div>
+    <div class="field"><textarea rows="5" data-key="carry-final">I joined this wanting to understand other perspectives and have more meaningful conversations. What I didn't expect was how much of the work would be looking at my own patterns — a tendency to freeze rather than speak, a past workplace where I let a lot go unexamined, a gap between what I value and what I actually practice. None of that is resolved by finishing a worksheet. But I know what I'm working on now, specifically, instead of in the abstract — and that's a real place to build from.</textarea></div>
+
+    <p class="final-quote"><span class="pull-quote-mark">&ldquo;</span>Equity work is not a destination. It is an ongoing process of learning, reflecting, and taking action.</p>
+  </section>
+
+  <!-- READING LIST -->
+  <section class="page" id="p-list">
+    <span class="stamp">APPENDIX</span>
+    <h2 class="page-title">My Reading List</h2>
+    <p class="lead">For my own reference — the resources that shaped this zine.</p>
+    <table class="readings">
+      <tr><th>Title</th><th>Author(s)</th><th>Source</th></tr>
+      <tr><td>Racial Anxiety</td><td>Rachel D. Godsil &amp; L. Song Richardson</td><td>Iowa Law Review</td></tr>
+      <tr><td>Systemic Racism: Individuals and Interactions, Institutions and Society</td><td>Mahzarin R. Banaji, Susan T. Fiske &amp; Douglas S. Massey</td><td>Cognitive Research: Principles and Implications (2021)</td></tr>
+      <tr><td>The Loud Silence of Racism: It is Killing Us All</td><td>Bridgette L. Jones</td><td>The American Journal of Bioethics (2021)</td></tr>
+      <tr><td>Implicit Bias and Structural Inequity</td><td>Kathleen Osta &amp; Hugh Vasquez</td><td>National Equity Project</td></tr>
+      <tr><td>The Four "I"s of Oppression</td><td>—</td><td>TREC Diversity, Equity, and Inclusion Resource</td></tr>
+      <tr><td>The Anti-Racist Resource Guide</td><td>Victoria Lynn Alexander, MEd.</td><td>Self-published guide</td></tr>
+      <tr><td>Are People Kinder in Racially Diverse Neighborhoods?</td><td>Tom Jacobs</td><td>Pacific Standard (2018)</td></tr>
+      <tr><td>10 Tips for Teaching and Talking to Kids about Race</td><td>MomsRising &amp; EmbraceRace</td><td>Resource guide</td></tr>
+      <tr><td>Virtual RECI Cohort Fall 2026 Guide</td><td>RECI · Center on Race and Social Problems, University of Pittsburgh</td><td>Program guide</td></tr>
+    </table>
+    <p style="font-size:13px; color:var(--ink-soft); margin-top:26px;">Zine made for the Racial Equity Consciousness Institute, Virtual Cohort, Fall 2026.</p>
+  </section>
+
+</div>
+
+<script>
+  const KEY = 'reci-zine-answers';
+  let answers = {};
+  let saveTimer = null;
+
+  function collectFields(){
+    return document.querySelectorAll('[data-key]');
+  }
+
+  function autoGrow(el){
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight + 2) + 'px';
+  }
+
+  function autoGrowAll(){
+    document.querySelectorAll('textarea[data-key]').forEach(autoGrow);
+  }
+
+  async function loadAnswers(){
+    const statusEl = document.getElementById('saveStatus');
+    try{
+      const result = await window.storage.get(KEY, false);
+      answers = result && result.value ? JSON.parse(result.value) : {};
+    }catch(e){
+      answers = {};
+    }
+    collectFields().forEach(el => {
+      const k = el.getAttribute('data-key');
+      if(answers[k] === undefined) return;
+      if(el.type === 'checkbox') el.checked = !!answers[k];
+      else if(el.type === 'radio') el.checked = (el.value === answers[k]);
+      else el.value = answers[k];
+    });
+    statusEl.textContent = 'all answers saved to this device';
+    autoGrowAll();
+  }
+
+  function scheduleSave(){
+    const statusEl = document.getElementById('saveStatus');
+    statusEl.textContent = 'saving…';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(async () => {
+      try{
+        await window.storage.set(KEY, JSON.stringify(answers), false);
+        statusEl.textContent = 'saved just now';
+      }catch(e){
+        statusEl.textContent = 'could not save (your edits still show on screen)';
+      }
+    }, 400);
+  }
+
+  function wireFields(){
+    collectFields().forEach(el => {
+      const k = el.getAttribute('data-key');
+      const evt = (el.tagName === 'TEXTAREA' || el.type === 'text') ? 'input' : 'change';
+      el.addEventListener(evt, () => {
+        answers[k] = el.type === 'checkbox' ? el.checked : el.value;
+        scheduleSave();
+        if(el.tagName === 'TEXTAREA') autoGrow(el);
+      });
+      // for radio groups, el.value is the option's own value, which is what we want saved
+    });
+  }
+
+  function toggleBackupPanel(){
+    const panel = document.getElementById('backupPanel');
+    panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
+  }
+
+  function prepareBackupText(){
+    const ta = document.getElementById('backupTextArea');
+    ta.value = JSON.stringify(answers, null, 2);
+    ta.focus();
+    ta.select();
+  }
+
+  async function copyBackupText(){
+    const ta = document.getElementById('backupTextArea');
+    const statusEl = document.getElementById('saveStatus');
+    if(!ta.value){
+      prepareBackupText();
+    }
+    try{
+      await navigator.clipboard.writeText(ta.value);
+      statusEl.textContent = 'backup copied to clipboard';
+    }catch(err){
+      ta.focus();
+      ta.select();
+      try{
+        document.execCommand('copy');
+        statusEl.textContent = 'backup copied to clipboard';
+      }catch(err2){
+        statusEl.textContent = 'could not copy automatically — select the text and copy manually';
+      }
+    }
+  }
+
+  async function restoreFromPastedText(){
+    const ta = document.getElementById('restoreTextArea');
+    const statusEl = document.getElementById('saveStatus');
+    try{
+      const restored = JSON.parse(ta.value);
+      answers = restored;
+      collectFields().forEach(el => {
+        const k = el.getAttribute('data-key');
+        if(answers[k] === undefined) return;
+        if(el.type === 'checkbox') el.checked = !!answers[k];
+        else if(el.type === 'radio') el.checked = (el.value === answers[k]);
+        else el.value = answers[k];
+      });
+      await window.storage.set(KEY, JSON.stringify(answers), false);
+      statusEl.textContent = 'backup restored and saved';
+      autoGrowAll();
+    }catch(err){
+      statusEl.textContent = 'could not read that text';
+      alert('Could not read that as backup data. Make sure you pasted the full text exactly as copied, starting with { and ending with }.');
+    }
+  }
+
+  async function resetAll(){
+    if(!confirm("Clear everything you've written in this zine? This cannot be undone.")) return;
+    answers = {};
+    collectFields().forEach(el => {
+      if(el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+      else el.value = '';
+    });
+    try{ await window.storage.set(KEY, JSON.stringify(answers), false); }catch(e){}
+    document.getElementById('saveStatus').textContent = 'cleared';
+    autoGrowAll();
+  }
+
+  function preparePrintText(){
+    document.querySelectorAll('textarea[data-key], input[type=text][data-key]').forEach(el => {
+      let mirror = el.nextElementSibling;
+      if(!mirror || !mirror.classList || !mirror.classList.contains('print-text')){
+        mirror = document.createElement('div');
+        mirror.className = 'print-text';
+        el.insertAdjacentElement('afterend', mirror);
+      }
+      mirror.textContent = el.value || '';
+    });
+  }
+
+  function removePrintText(){
+    document.querySelectorAll('.print-text').forEach(el => el.remove());
+  }
+
+  window.addEventListener('beforeprint', preparePrintText);
+  window.addEventListener('afterprint', removePrintText);
+
+  wireFields();
+  loadAnswers();
+</script>
+</body>
+</html>
